@@ -1,0 +1,23 @@
+mixin document(title, css_filename, fonts)
+	doctype html
+	html(lang="en")
+	head
+		meta(charset="UTF-8")
+		title=title
+		link(href="css/normalize.css" rel="stylesheet")
+		link(href="css/"+css_filename+".css" rel="stylesheet")
+		- if (fonts != null) 
+			each font in fonts
+				link(href="https://fonts.googleapis.com/css?family="+font+":300,400,400i,700" rel="stylesheet") 		
+	body
+		block
+
+
+mixin div(style)
+	div(style=style)
+		block content				
+
+
+			
+
+

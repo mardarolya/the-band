@@ -1,0 +1,243 @@
+mixin link_style(url)
+    link(href=url rel="stylesheet")
+
+mixin empty-li(n)
+    - for(var i = 0; i < n; i++)
+        li(style="color:transparent") 1
+
+mixin font-words
+    - var words = ["music", "sound", "vinyl", "love", "creativity", "hipster", "songs", "notes"];
+    each val in words
+        li= val
+    each val in words
+        li= val
+
+mixin animation
+    div.animation
+        - for(var i = 0; i < 8; i++)
+            div
+
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width,initial-scale=1.0,maximum-scale=1")
+        title The Band
+        +link_style("css/normalize.css")
+        +link_style("css/style-band.css")
+        +link_style("https://fonts.googleapis.com/css?family=Lora:400,400i,700")
+        +link_style("https://fonts.googleapis.com/css?family=Oswald:300,400,700")
+
+    body
+        div.content-band
+            header.header-band
+                nav.navbar-header
+                    ul
+                        li.active
+                            a(href="#home") Home
+                            +animation
+                        li
+                            a(href="#about") About
+                            +animation
+                        li
+                            a(href="#music") Music
+                            +animation
+                        li
+                            a(href="#tours") Tours
+                            +animation
+                        li
+                            a(href="#contact") Contract
+                            +animation
+                div.words.clearfix
+                    ul
+                        +empty-li(3)
+                        +font-words
+                    ul
+                        +font-words
+                        +empty-li(3)
+                    ul
+                        +empty-li(2)
+                        +font-words
+                        +empty-li(1)
+                    ul
+                        +empty-li(3)
+                        +font-words
+                    h1
+                        span.coffee We are
+                        br
+                        span.dark-coffee the band
+
+            section.about.clearfix(id="about")
+                div.photo
+                    //div.photo-member
+                    img(src="images/member-bass.jpg")
+                    div.member-name
+                        span.light-coffee Curt
+                        br
+                        span.dark-coffee  Sheard
+                div.about-member
+                    div.members
+                        ul
+                            li Lawrie Alton
+                            li Charles Timmy
+                            li.active Curt Sheard
+                            li Cade Ryker
+                            li Tommie Brendan
+                        ul
+                            li Vocalist
+                            li Guitar
+                            li.active Bass
+                            li Drums
+                            li Electronics
+                    article
+                        h2 Meet our band
+                        p.
+                            Court Sheard, swag iPhone neutra williamsburg,
+                            you probably haven't heard of them PBR&B marfa seitan.
+                            Four dollar toast wayfarers helvetica etsy,
+                            affogato pinterest schlitz.
+                            Squid yr mlkshk, pinterest pour-over polaroid photo booth.
+                            Yr fixie plaid kogi.
+                button.next
+                button.prev
+
+            section.music.clearfix(id="music")
+                div.discography
+                    img(src="images/album.jpg")
+                    div.albums
+                        h3 Discography
+                        table
+                            thead
+                            tbody
+                                tr
+                                    td Surprise Without
+                                    td.decor
+                                    td 2015
+                                    td
+                                        button.listen Listen
+                                    td
+                                        button.buy Buy
+                                tr
+                                    td Mists Of A Shadow
+                                    td.decor
+                                    td 2014
+                                    td
+                                        button.listen Listen
+                                    td
+                                        button.buy Buy
+                                tr
+                                    td Heroes Of The Sun
+                                    td.decor
+                                    td 2013
+                                    td
+                                        button.listen Listen
+                                    td
+                                        button.buy Buy
+                                tr
+                                    td Picure Of The Past
+                                    td.decor
+                                    td 2012
+                                    td
+                                        button.listen Listen
+                                    td
+                                        button.buy Buy
+
+                div.songs
+                    h3 Now playing
+                    span.name-album Surprise Without Flaws
+                    span.name-song 01. Clouds In The Forest
+
+                    div.turntable
+                        button.prev
+                        button.pause
+                        button.play.is-none
+                        button.next
+
+                        span.progress
+
+                    article.current-album
+                        h3 Surprise without Flaws
+                        ul.list-songs
+                            li.active
+                                button.play.in-process
+                                span  01. Clouds In The Forest
+                            li
+                                button.play
+                                span  02. Rat In The River
+                            li
+                                button.play
+                                span  03. Giants And Companions
+                            li
+                                button.play
+                                span  04. Ashamed Of Light
+                            li
+                                button.play
+                                span  05. Doubting The Forest
+                            li
+                                button.play
+                                span  06. Criminals Of The Lake
+                            li
+                                button.play
+                                span  07. Curse Of Eternity
+                            li
+                                button.play
+                                span  08. Fog In My Town
+                            li
+                                button.play
+                                span  09. Serpent In The Mountains
+                        ul.time-songs
+                            li
+                                span.dots
+                                span.time 3:20
+                            li
+                                span.dots
+                                span.time 2:48
+                            li
+                                span.dots
+                                span.time 2:27
+                            li
+                                span.dots
+                                span.time 3:32
+                            li
+                                span.dots
+                                span.time 2:40
+                            li
+                                span.dots
+                                span.time 2:50
+                            li
+                                span.dots
+                                span.time 1:33
+                            li
+                                span.dots
+                                span.time 1:33
+                            li
+                                span.dots
+                                span.time 3:24
+
+            section.tours(id="tours")
+                h2 Tours dates
+                div.tours-list
+                div.tours-date
+
+            footer(id="contacts")
+                span.contacts
+                span.phone
+                div.subscribe
+                div.footer-copyright
+                    span.copyright
+                    nav.navbar-footer
+                    ul
+                        li
+                            a(href="#home") Home
+                        li
+                            a(href="#about") About
+                        li
+                            a(href="#music") Music
+                        li
+                            a(href="#tours") Tours
+                        li
+                            a(href="#contact") Contract
+
+
+
+
