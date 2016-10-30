@@ -748,6 +748,7 @@
   width: 800px;
   height: 350px;
   transform: translateX(-50%);
+  transition: all 1s easy;
 }
 .content-band .tours .tours-list .content-tour-list ul {
   position: relative;
@@ -1336,4 +1337,3 @@
     display: none;
   }
 }
-/*# sourceMappingURL=style-band.map */

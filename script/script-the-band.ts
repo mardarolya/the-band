@@ -75,8 +75,9 @@ for (let i = 0, max = listenAlbum.length; i < max; i++) {
     listenAlbum[i].addEventListener("click", function(event){
         event.preventDefault();
         if (doSong.classList.contains("is-none")) {
-            pauseSong.click();
+             pauseSong.click();
         }
+
         if (parseInt(done.style.width) > 4) {
             widthTrack = parseInt(turntable.offsetWidth)*0.9 - 30;
 
@@ -85,9 +86,9 @@ for (let i = 0, max = listenAlbum.length; i < max; i++) {
             circle.style.left = pad + "px";
             done.style.width = "4px";
             willDo.style.left = pad + "px";
-            willDo.style.width = parseInt(turntable.offsetWidth)*0.88 + "px";
-            song.src = "";
+            willDo.style.width = parseInt(turntable.offsetWidth)*0.88 + "px";            
         };
+
         let nameAlbum = this.parentElement.parentElement.querySelector("td:first-child").textContent;
         let nAlbum = 0;
         for(let j = 0, max = albums.length; j < max; j++) {
@@ -192,7 +193,7 @@ pauseSong.addEventListener("click", function(){
 });
 
 doSong.addEventListener("click", function(){
-    if (song.src == "") {
+    if (song.src.indexOf(".mp3") == -1) {
         playSong[0].click();
     } else {
       song.play();
@@ -216,6 +217,7 @@ function letMusicPlay() {
     playSong = document.querySelectorAll(".list-songs .play");
     var album = document.querySelector(".current-album h3").textContent.toLowerCase();
     var currentAlbum = album.split(" ").join("-");
+    song = new Audio();
     for (let i = 0, max = playSong.length; i < max; i++) {
         playSong[i].addEventListener("click", function (event) {
             pauseSong.classList.remove("is-none");
@@ -250,7 +252,7 @@ function letMusicPlay() {
 
             //включаем песню
             try {
-                song.src = "songs/" + currentAlbum + "/" + currentSong + ".mp3";
+                song.src = "songs/" + currentAlbum + "/" + currentSong + ".mp3";                
                 song.play();
 
                 // отмечаем процесс
@@ -292,3 +294,46 @@ function goTurntable() {
         song.pause();
     };
 }
+
+var blockContainer = document.querySelector(".tours-list");
+var blockDates     = blockContainer.querySelector(".content-tour-list");
+var nextEvent      = blockContainer.querySelector(".next");
+var prevEvent      = blockContainer.querySelector(".prev");
+
+var widthConteiner = blockContainer.offsetWidth;
+var widthDates     = blockDates.offsetWidth;
+
+blockDates.style.setProperty("transform", "translateX(-50%)"); 
+
+function mooveListTours(direction) {
+
+    if (widthConteiner < widthDates) {
+        var leftSide = parseInt(blockDates.style.getPropertyValue("transform").split("(")[1]);
+        var freeLeft = leftSide*widthDates/100 + widthConteiner/2;
+        var freeRight = widthDates - widthConteiner + freeLeft;
+        var mayBeFree = widthDates - widthConteiner; 
+
+        if (direction == "next") {
+            if (Math.abs(freeLeft) < mayBeFree) {
+               leftSide = leftSide - 5; 
+            }
+        } else if (direction == "prev") {
+            if (Math.abs(freeRight) < mayBeFree) {
+                leftSide = leftSide + 5;
+            }
+        }
+
+        blockDates.style.setProperty("transform", "translateX("+leftSide+"%)"); 
+    }
+}
+
+nextEvent.addEventListener("click", function(event){
+    event.preventDefault();
+
+    mooveListTours("next");
+});
+
+prevEvent.addEventListener("click", function(event){
+    event.preventDefault();
+    mooveListTours("prev");
+});

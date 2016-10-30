@@ -1,5 +1,0 @@
-<link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700" rel="stylesheet">
-font-family: 'Lora', serif;
-
-<link href="https://fonts.googleapis.com/css?family=Oswald:300,400,700" rel="stylesheet">
-font-family: 'Oswald', sans-serif;

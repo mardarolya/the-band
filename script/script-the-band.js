@@ -172,7 +172,7 @@ pauseSong.addEventListener("click", function () {
     doSong.classList.remove("is-none");
 });
 doSong.addEventListener("click", function () {
-    if (song.src == "") {
+    if (song.src.indexOf(".mp3") == -1) {
         playSong[0].click();
     }
     else {
@@ -269,3 +269,46 @@ function goTurntable() {
     ;
 }
 //# sourceMappingURL=script-the-band.js.map
+
+var blockContainer = document.querySelector(".tours-list");
+var blockDates     = blockContainer.querySelector(".content-tour-list");
+var nextEvent      = blockContainer.querySelector(".next");
+var prevEvent      = blockContainer.querySelector(".prev");
+
+var widthConteiner = blockContainer.offsetWidth;
+var widthDates     = blockDates.offsetWidth;
+
+blockDates.style.setProperty("transform", "translateX(-50%)"); 
+
+function mooveListTours(direction) {
+
+    if (widthConteiner < widthDates) {
+        var leftSide = parseInt(blockDates.style.getPropertyValue("transform").split("(")[1]);
+        var freeLeft = leftSide*widthDates/100 + widthConteiner/2;
+        var freeRight = widthDates - widthConteiner + freeLeft;
+        var mayBeFree = widthDates - widthConteiner; 
+
+        if (direction == "next") {
+            if (Math.abs(freeLeft) < mayBeFree) {
+               leftSide = leftSide - 5; 
+            }
+        } else if (direction == "prev") {
+            if (Math.abs(freeRight) < mayBeFree) {
+                leftSide = leftSide + 5;
+            }
+        }
+
+        blockDates.style.setProperty("transform", "translateX("+leftSide+"%)"); 
+    }
+}
+
+nextEvent.addEventListener("click", function(event){
+    event.preventDefault();
+
+    mooveListTours("next");
+});
+
+prevEvent.addEventListener("click", function(event){
+    event.preventDefault();
+    mooveListTours("prev");
+});
