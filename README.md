@@ -7,4 +7,4 @@
 * Использованные технологии: Jade(Pug), LESS, JavaSript
 
 
-<img width="500" alt="" src="https://github.com/mardarolya/mardarolya.github.com/img/the-band.jpg">
+<img width="500" alt="" src="https://github.com/mardarolya/mardarolya.github.com/blob/master/img/the-band.jpg">
